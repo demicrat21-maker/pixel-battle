@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Пиксель-батл</title>
+<meta name="description" content="Общий холст: ставь пиксели вместе с другими игроками в реальном времени.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4'><rect width='2' height='2' fill='%23e50000'/><rect x='2' width='2' height='2' fill='%230083c7'/><rect y='2' width='2' height='2' fill='%2302be01'/><rect x='2' y='2' width='2' height='2' fill='%23e5d900'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <h1>Пиксель-батл</h1>
+  <span class="stat"><span class="dot"></span>онлайн: <b id="online">—</b></span>
+  <span class="stat">пикселей: <b id="count">—</b></span>
+  <span class="spacer"></span>
+  <input class="nick" id="nick" maxlength="20" placeholder="Твой ник" aria-label="Ник">
+  <span class="status" id="status">Подключаемся…</span>
+</header>
+<div class="announce" id="announce" hidden></div>
+
+<div class="main">
+  <div class="stage" id="stage">
+    <canvas id="board" aria-label="Холст"></canvas>
+    <div class="zoom">
+      <button id="zin" aria-label="Приблизить">+</button>
+      <button id="zout" aria-label="Отдалить">−</button>
+      <button id="zfit" aria-label="Показать всё поле">⤢</button>
+    </div>
+    <div class="hint" id="hint">Нажми на клетку, выбери цвет и ставь пиксель</div>
+  </div>
+</div>
+
+<div class="dock">
+  <div class="palette" id="palette" role="group" aria-label="Палитра"></div>
+  <span class="coords" id="coords">x —, y —</span>
+  <button class="place" id="place" disabled><span id="placeLabel">Подключаемся…</span><span class="bar" id="bar"></span></button>
+</div>
+
+<script type="module" src="js/game.js"></script>
+</body>
+</html>

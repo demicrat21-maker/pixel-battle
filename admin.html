@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Админка · Пиксель-батл</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4'><rect width='4' height='4' fill='%23222'/><rect x='1' y='1' width='2' height='2' fill='%23e50000'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <h1><a href="./">Пиксель-батл</a> · админка</h1>
+  <span class="spacer"></span>
+  <span class="status" id="status">Загрузка…</span>
+  <button class="btn" id="logout" hidden>Выйти</button>
+</header>
+
+<div id="gate" class="notice" hidden></div>
+
+<div class="main" id="panel" hidden>
+  <div class="stage" id="stage">
+    <canvas id="board" aria-label="Холст"></canvas>
+    <div class="zoom">
+      <button id="zin" aria-label="Приблизить">+</button>
+      <button id="zout" aria-label="Отдалить">−</button>
+      <button id="zfit" aria-label="Показать всё поле">⤢</button>
+    </div>
+  </div>
+
+  <aside class="side">
+    <section>
+      <div class="stats">
+        <div><b id="sOnline">0</b><span>онлайн</span></div>
+        <div><b id="sPixels">0</b><span>пикселей</span></div>
+        <div><b id="sBanned">0</b><span>в бане</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h3>Инструмент</h3>
+      <div class="tools" role="group" aria-label="Инструмент">
+        <button class="btn" data-tool="inspect" aria-pressed="true">Осмотр</button>
+        <button class="btn" data-tool="paint" aria-pressed="false">Рисовать</button>
+        <button class="btn" data-tool="area" aria-pressed="false">Область</button>
+      </div>
+      <p class="small" id="toolHint">Нажми на пиксель, чтобы узнать, кто его поставил.</p>
+      <div class="palette" id="palette" hidden></div>
+      <div id="areaBox" hidden class="row">
+        <button class="btn danger" id="areaClear" disabled>Стереть область</button>
+        <button class="btn" id="areaReset">Сбросить</button>
+      </div>
+    </section>
+
+    <section id="inspect" hidden>
+      <h3>Клетка <span id="iXY"></span></h3>
+      <dl class="kv">
+        <dt>Цвет</dt><dd id="iColor">—</dd>
+        <dt>Ник</dt><dd id="iName">—</dd>
+        <dt>ID игрока</dt><dd id="iUid">—</dd>
+        <dt>Когда</dt><dd id="iTime">—</dd>
+      </dl>
+      <div class="row">
+        <button class="btn" id="iErase">Стереть пиксель</button>
+        <button class="btn danger" id="iBan">Забанить</button>
+        <button class="btn danger" id="iWipe">Стереть все его пиксели</button>
+      </div>
+    </section>
+
+    <section>
+      <h3>Настройки игры</h3>
+      <label for="cd">Кулдаун, секунд</label>
+      <div class="row"><input type="number" id="cd" min="0" max="3600" step="1"><button class="btn primary" id="cdSave">Сохранить</button></div>
+      <label for="ann">Объявление для игроков</label>
+      <div class="row"><input type="text" id="ann" maxlength="200" placeholder="Например: финал в 20:00!"><button class="btn primary" id="annSave">Показать</button></div>
+      <div class="row"><button class="btn" id="annClear">Убрать объявление</button><button class="btn" id="lock">Закрыть холст</button></div>
+    </section>
+
+    <section>
+      <h3>Забаненные</h3>
+      <ul class="list" id="bans"><li class="small">Пока никого</li></ul>
+    </section>
+
+    <section>
+      <h3>Холст</h3>
+      <div class="row">
+        <button class="btn" id="png">Скачать PNG</button>
+        <button class="btn danger" id="wipeAll">Очистить всё поле</button>
+      </div>
+    </section>
+  </aside>
+</div>
+
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>
